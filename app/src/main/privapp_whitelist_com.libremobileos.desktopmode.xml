@@ -16,6 +16,8 @@
 -->
 <permissions>
     <privapp-permissions package="com.libremobileos.desktopmode">
+        <permission name="android.permission.BIND_QUICK_SETTINGS_TILE"/>
+        <permission name="android.permission.post_notifications"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
         <permission name="com.libremobileos.vncflinger.USE_VNC"/>
     </privapp-permissions>

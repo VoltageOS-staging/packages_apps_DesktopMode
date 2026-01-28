@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2022 LibreMobileOS Foundation
+// Copyright (C) 2024 LibreMobileOS Foundation
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,30 +22,50 @@ android_app {
     name: "DesktopMode",
     resource_dirs: ["res"],
     platform_apis: true,
-    defaults: [
-        "SettingsLibDefaults",
-    ],
-    srcs: [
-        "java/**/*.java",
-    ],
-    system_ext_specific: true,
     certificate: "platform",
     privileged: true,
+    system_ext_specific: true,
+
+    srcs: [
+        "java/**/*.java",
+        "java/**/*.kt",
+    ],
+
     static_libs: [
+        "androidx.core_core-ktx",
         "androidx.appcompat_appcompat",
-        "androidx.preference_preference",
         "com.google.android.material_material",
+        
+        "androidx.activity_activity-compose",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx.compose.material3_material3",
+        "androidx.compose.material_material-icons-extended",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        
+        "androidx.datastore_datastore-preferences",
+
         "VncFlinger_aidl-java",
     ],
+
+    // OPTIONAL: If you need custom VNC aidl local compilation
+    // aidl: {
+    //     local_include_dirs: ["aidl"],
+    // },
+
+    kotlincflags: ["-Xjvm-default=all"],
+
     required: [
-                "privapp_whitelist_com.libremobileos.desktopmode.xml",
-                "default-permissions_com.libremobileos.desktopmode",
+        "privapp_whitelist_com.libremobileos.desktopmode.xml",
+        "default-permissions_com.libremobileos.desktopmode",
     ],
 }
 
 prebuilt_etc {
     name: "privapp_whitelist_com.libremobileos.desktopmode.xml",
-
     system_ext_specific: true,
     src: "privapp_whitelist_com.libremobileos.desktopmode.xml",
     sub_dir: "permissions",

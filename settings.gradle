@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Desktop Mode"
 include ':app'
-include ':SettingsLib'
